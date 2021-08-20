@@ -3,7 +3,6 @@ import Layout from "../../components/layout/layout";
 import styles from "./Country.module.css";
 
 const getCountry = async (id) => {
-  console.log(id);
   const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
   const country = await res.json();
   return country;
@@ -37,7 +36,9 @@ const Country = ({ country }) => {
               <div className={styles.overview_label}>Population</div>
             </div>
             <div className={styles.overview_area}>
-              <div className={styles.overview_value}>{country.area}</div>
+              <div className={styles.overview_value}>
+                {country.area || "N/A"}
+              </div>
               <div className={styles.overview_label}>Area</div>
             </div>
           </div>
@@ -79,7 +80,9 @@ const Country = ({ country }) => {
 
           <div className={styles.details_panel_row}>
             <div className={styles.details_panel_label}>Gini</div>
-            <div className={styles.details_panel_value}>{country.gini} %</div>
+            <div className={styles.details_panel_value}>
+              {country.gini || "N/A"} %
+            </div>
           </div>
 
           <div className={styles.details_panel_borders}>
